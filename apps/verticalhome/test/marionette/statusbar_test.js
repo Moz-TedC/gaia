@@ -138,9 +138,11 @@ marionette('Statusbar', function() {
 
       var remove = icon.findElement('.remove');
       remove.tap();
+      client.switchToFrame();
       home.confirmDialog('remove');
 
       // Scroll until we reach the top and verify statusbar state.
+      client.switchToFrame(system.getHomescreenIframe());
       client.waitFor(function() {
         body = client.helper.waitForElement('body');
         actions.flick(body, 200, 200, 200, 500);
